@@ -1,2 +1,2 @@
-win32 native sdk version:zoom-sdk.4.4.56086.0911
-mac native sdk version:All_mac_sdk_4.4.56087.0911
+win32 native sdk version:zoom-sdk.4.4.56331.0926
+mac native sdk version:All_mac_sdk_4.4.56342.0926

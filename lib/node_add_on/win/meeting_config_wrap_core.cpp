@@ -216,6 +216,56 @@ void ZMeetingConfigWrap::PrePopulateWebinarRegistrationInfo(ZoomSTRING email, Zo
 {
 	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().PrePopulateWebinarRegistrationInfo(email.c_str(), userName.c_str());
 }
+
+void ZMeetingConfigWrap::Reset()
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().Reset();
+}
+void ZMeetingConfigWrap::EnableAutoAdjustSpeakerVolumeWhenJoinAudio(bool bEnable)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().EnableAutoAdjustSpeakerVolumeWhenJoinAudio(bEnable);
+}
+void ZMeetingConfigWrap::EnableAutoAdjustMicVolumeWhenJoinAudio(bool bEnable)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().EnableAutoAdjustMicVolumeWhenJoinAudio(bEnable);
+}
+void ZMeetingConfigWrap::ConfigDSCP(int dscpAudio, int dscpVideo, bool bReset)
+{
+	bool sdk_bReset = true;
+	if (bReset)
+		sdk_bReset = false;
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().ConfigDSCP(dscpAudio, dscpVideo, sdk_bReset);
+}
+
+void ZMeetingConfigWrap::EnableHideFullPhoneNumber4PureCallinUser(bool bHide)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().EnableHideFullPhoneNumber4PureCallinUser(bHide);
+}
+void ZMeetingConfigWrap::EnableLengthLimitationOfMeetingNumber(bool bEnable)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().EnableLengthLimitationOfMeetingNumber(bEnable);
+}
+void ZMeetingConfigWrap::EnableShareIOSDevice(bool bEnable)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().EnableShareIOSDevice(bEnable);
+}
+void ZMeetingConfigWrap::EnableShareWhiteBoard(bool bEnable)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().EnableShareWhiteBoard(bEnable);
+}
+void ZMeetingConfigWrap::ForceDisableMultiShare(bool bDisable)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().ForceDisableMultiShare(bDisable);
+}
+void ZMeetingConfigWrap::SetMaxDurationForOnlyHostInMeeting(int nDuration)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().SetMaxDurationForOnlyHostInMeeting(nDuration);
+}
+void ZMeetingConfigWrap::EnableLocalRecordingConvertProgressBarDialog(bool bShow)
+{
+	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetMeetingConfiguration().EnableLocalRecordingConvertProgressBarDialog(bShow);
+}
+
 ZNFreeMeetingEndingReminderType ZMeetingConfigWrap::GetReminderType()
 {
 	return  FreeMeetingReminderHandler::GetInst().GetType();

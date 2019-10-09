@@ -110,6 +110,46 @@ public:
 	///Otherwise failed. To get extended error information, see \link ZNSDKError \endlink enum.
 	static void SetFreeMeetingUpgradeToProMeetingCB(const v8::FunctionCallbackInfo<v8::Value>& args);
 
+	/// \brief Reset the meeting configuration and back to the default state.
+	static void Reset(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set if it is able to auto-adjust the volume of the speaker when joining the meeting. 
+	/// \param 1.bEnable(bool) TRUE indicates to auto-adjust the volume of the speaker. FALSE not.
+	/// \remarks If it is TRUE, the SDK will adjust the speaker volume automatically. It will unmute if the speaker was muted.
+	static void EnableAutoAdjustSpeakerVolumeWhenJoinAudio(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set if it is able to auto-adjust the volume of the mic when joining the meeting. 
+	/// \param 1.bEnable(bool) TRUE indicates to auto-adjust the volume of the mic. FALSE not.
+	/// \remarks If it is TRUE, the SDK will adjust the mic volume automatically. It will unmute if the mic was muted.
+	static void EnableAutoAdjustMicVolumeWhenJoinAudio(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Configure DSCP(Differential services code point) values.  
+	/// \param 1.dscpAudio(number) Configure DSCP value for audio.
+	/// \param 2.dscpVideo(number) Configure DSCP value for video.
+	/// \param 3.bReset(bool) Reset DSCP values. This param is just used for Windows. For Mac, you can pass TRUE or FALSE as you like.
+	/// \remarks This interface satisfies some users who have other requirements. It is not recommended to configure it. Contact the support engineer for more details. 
+	static void ConfigDSCP(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set if it is able to display the full phone number for the user who joins the meeting with phone. Default: FALSE.
+	/// \param 1.bHide(bool) TRUE indicates to hide the partial phone number. FALSE not. 
+	/// \remarks If it is false, some figures of the number will be replaced by asterisk(*).
+	static void EnableHideFullPhoneNumber4PureCallinUser(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set if it is able to limit the length of meeting ID. Default: FALSE.
+	/// \param 1.bEnable(bool) TRUE indicates to limit the length of meeting ID. FALSE not.
+	/// \remarks If it is enabled, the length of the meeting ID depends on the ID type. The ID shall be more than nine(9) figures or five(5) letters.
+	static void EnableLengthLimitationOfMeetingNumber(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set if it is able to share IOS device. Default: FALSE.
+	/// \param 1.bEnable(bool) TRUE indicates to enable to share. FALSE not.
+	static void EnableShareIOSDevice(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set if it is able to share white board. Default: TRUE.
+	/// \param 1.bEnable(bool) TRUE indicates to enable to share on the white board. FALSE not.
+	static void EnableShareWhiteBoard(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set whether to forbid multi-share. Default: FALSE.
+	/// \param 1.bDisable(bool) TRUE indicates to forbid multi-share. FALSE not.
+	static void ForceDisableMultiShare(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set the maximum duration of the meeting when there is no attendee in the meeting. Default: 24*60.
+	/// \param 1.nDuration(number) Specify the maximum duration in minutes.
+	static void SetMaxDurationForOnlyHostInMeeting(const v8::FunctionCallbackInfo<v8::Value>& args);
+	/// \brief Set the visibility of the local recording convert progress bar dialog. Default: TRUE. 
+	/// \param bShow TRUE indicates to show the dialog box. FALSE not.
+	static void EnableLocalRecordingConvertProgressBarDialog(const v8::FunctionCallbackInfo<v8::Value>& args);
+
 	static v8::Persistent<v8::Function> constructor;
 };
 template<>
@@ -142,6 +182,18 @@ static void InitClassAttribute<ZoomNodeMeetingConfigCtrlWrap >(const v8::Local<v
 	NODE_SET_PROTOTYPE_METHOD(tpl, "SetFreeMeetingUpgradeToGiftFreeTrialStartCB", ZoomNodeMeetingConfigCtrlWrap::SetFreeMeetingUpgradeToGiftFreeTrialStartCB);
 	NODE_SET_PROTOTYPE_METHOD(tpl, "SetFreeMeetingUpgradeToGiftFreeTrialStopCB", ZoomNodeMeetingConfigCtrlWrap::SetFreeMeetingUpgradeToGiftFreeTrialStopCB);
 	NODE_SET_PROTOTYPE_METHOD(tpl, "SetFreeMeetingUpgradeToProMeetingCB", ZoomNodeMeetingConfigCtrlWrap::SetFreeMeetingUpgradeToProMeetingCB);
+
+	NODE_SET_PROTOTYPE_METHOD(tpl, "Reset", ZoomNodeMeetingConfigCtrlWrap::Reset);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "EnableAutoAdjustSpeakerVolumeWhenJoinAudio", ZoomNodeMeetingConfigCtrlWrap::EnableAutoAdjustSpeakerVolumeWhenJoinAudio);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "EnableAutoAdjustMicVolumeWhenJoinAudio", ZoomNodeMeetingConfigCtrlWrap::EnableAutoAdjustMicVolumeWhenJoinAudio);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "ConfigDSCP", ZoomNodeMeetingConfigCtrlWrap::ConfigDSCP);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "EnableHideFullPhoneNumber4PureCallinUser", ZoomNodeMeetingConfigCtrlWrap::EnableHideFullPhoneNumber4PureCallinUser);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "EnableLengthLimitationOfMeetingNumber", ZoomNodeMeetingConfigCtrlWrap::EnableLengthLimitationOfMeetingNumber);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "EnableShareIOSDevice", ZoomNodeMeetingConfigCtrlWrap::EnableShareIOSDevice);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "EnableShareWhiteBoard", ZoomNodeMeetingConfigCtrlWrap::EnableShareWhiteBoard);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "ForceDisableMultiShare", ZoomNodeMeetingConfigCtrlWrap::ForceDisableMultiShare);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "SetMaxDurationForOnlyHostInMeeting", ZoomNodeMeetingConfigCtrlWrap::SetMaxDurationForOnlyHostInMeeting);
+	NODE_SET_PROTOTYPE_METHOD(tpl, "EnableLocalRecordingConvertProgressBarDialog", ZoomNodeMeetingConfigCtrlWrap::EnableLocalRecordingConvertProgressBarDialog);
 }
 template<>
 static v8::Persistent<v8::Function>* GetConstructor<ZoomNodeMeetingConfigCtrlWrap >() {

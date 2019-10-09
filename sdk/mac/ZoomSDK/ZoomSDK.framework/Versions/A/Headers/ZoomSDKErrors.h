@@ -403,7 +403,11 @@ typedef enum {
     ZoomSDKMeetingStatus_Webinar_Promote = 12,
     //Demote the attendees from the panelist.
     ZoomSDKMeetingStatus_Webinar_Depromote = 13,
-
+    //Join breakout room.
+    ZoomSDKMeetingStatus_Join_Breakout_Room = 14,
+    //Leave breakout room.
+    ZoomSDKMeetingStatus_Leave_Breakout_Room = 15,
+    
 }ZoomSDKMeetingStatus;
 
 /**

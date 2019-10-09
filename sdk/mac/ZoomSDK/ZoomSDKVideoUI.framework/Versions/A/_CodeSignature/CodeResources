@@ -14,7 +14,7 @@
 		</data>
 		<key>Resources/Info.plist</key>
 		<data>
-		fQlU5HldyjFXav/kTnWWTTk9ptA=
+		IjE6HgJQKbR2vCqGf5uwA2PKPTU=
 		</data>
 		<key>Resources/LaunchPollWindow.nib</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Resources/PollProgressWindow.nib</key>
 		<data>
-		+n4ToGsOpgM9digAhzPglxQAmGE=
+		4wEG3dl5rThR5dfmxWnwJtzT984=
 		</data>
 		<key>Resources/RemoteControlUserListForLion.nib</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Resources/ZMJBHWindowController.nib</key>
 		<data>
-		bNtWpp7bfXAgKC6ejywJrBEiy+U=
+		+itEnxZuDdZaLciDJ6Q17Eq8RcU=
 		</data>
 		<key>Resources/ZMJoinMeetingWindowController.nib</key>
 		<data>
@@ -196,11 +196,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			fQlU5HldyjFXav/kTnWWTTk9ptA=
+			IjE6HgJQKbR2vCqGf5uwA2PKPTU=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ebti11nxquPw4BmQwW03gvV00e+IGa/6SV1hHyPr+TI=
+			NU5s8QCAMU3hzj0k2wRV83KGLhePaudOcFY740b7f04=
 			</data>
 		</dict>
 		<key>Resources/LaunchPollWindow.nib</key>
@@ -229,11 +229,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+n4ToGsOpgM9digAhzPglxQAmGE=
+			4wEG3dl5rThR5dfmxWnwJtzT984=
 			</data>
 			<key>hash2</key>
 			<data>
-			sF02lCLjqNC5vo3VPPzQz16TUNOjdvoB3VoDLrcVOYA=
+			loxoj+fCciDjkEf2AXdAup6LlroD7qyFVDysz3hxtYo=
 			</data>
 		</dict>
 		<key>Resources/RemoteControlUserListForLion.nib</key>
@@ -383,11 +383,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			bNtWpp7bfXAgKC6ejywJrBEiy+U=
+			+itEnxZuDdZaLciDJ6Q17Eq8RcU=
 			</data>
 			<key>hash2</key>
 			<data>
-			hH9QwJhxf9UaUQAomoa5Kd3Ek1cJapqhFZNpvs76DE0=
+			P4JKdnLaPkeO/2j/JgS7rh5brV0oXnuwegkZZHZCOpk=
 			</data>
 		</dict>
 		<key>Resources/ZMJoinMeetingWindowController.nib</key>

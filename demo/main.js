@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-const { ZOOM_TYPE_OS_TYPE, ZoomSDK_LANGUAGE_ID, ZoomSDKError, ZoomAuthResult, ZoomLoginStatus, ZoomMeetingStatus, ZoomMeetingUIFloatVideoType, SDKCustomizedStringType, SDKCustomizedURLType } = require('../lib/settings.js');
+const { ZOOM_TYPE_OS_TYPE, ZoomSDK_LANGUAGE_ID, ZoomSDKError, ZoomAuthResult, ZoomLoginStatus, ZoomMeetingStatus, 
+  ZoomMeetingUIFloatVideoType, SDKCustomizedStringType, SDKCustomizedURLType, ZoomAPPLocale } = require('../lib/settings.js');
 const ZOOMSDKMOD = require('../lib/zoom_sdk.js');
 const os = require('os');
 const platform = os.platform();
@@ -38,6 +39,7 @@ let zoomaudiorawdata;
 let zoomsetui;
 let hasRDLicense;
 let autoCloseYUV = false;
+let zoomlibuvrawdata;
 
 function sdkauthCB(status) {
   if (ZoomAuthResult.AUTHRET_SUCCESS == status){
@@ -72,12 +74,14 @@ function sdkauthCB(status) {
     zoomsetrecord = zoomsetting.GetRecordingSetting();
     zoomsetvideo = zoomsetting.GetVideoSetting();
     zoomsetaudio = zoomsetting.GetAudioSetting();
-    // zoomsetui = zoomsetting.GetSettingUICtrl();
+    zoomsetui = zoomsetting.GetSettingUICtrl();
     zoomcustomizedresource = zoomsdk.GetCustomizedResource();
     zoompremeeting = zoomsdk.PreMeeting();
     zoomvideorawdata = zoomsdk.VideoRawData();
     zoomaudiorawdata = zoomsdk.AudioRawData();
     zoomsharerawdata = zoomsdk.ShareRawData();
+    // zoomlibuvrawdata = zoomsdk.LibUVRawData();
+    // app.zoomlibuvrawdata = zoomlibuvrawdata;
     app.zoomvideorawdata = zoomvideorawdata;
     app.zoomsharerawdata = zoomsharerawdata;
     app.zoomaudiorawdata = zoomaudiorawdata;
@@ -122,8 +126,8 @@ function onUserVideoStatusChange(result) {
   console.log('onUserVideoStatusChange', result);
 }
 
-function meetingstatuscb(status) {
-  console.log('meetingstatus', status);
+function meetingstatuscb(status, result) {
+  console.log('meetingstatus', status, result);
   switch (status)
   {
     case ZoomMeetingStatus.MEETING_STATUS_CONNECTING:
@@ -470,6 +474,10 @@ function OnDirectShareStatusUpdate(status) {
   startjoinWindow ? startjoinWindow.webContents.send('main-process-onDirectShareStatusUpdate', status): null;
 }
 
+function onLibUVRawDataReceived(databuf) {
+	console.log('onLibUVRawDataReceived -- pipe works! -- data:', databuf);
+}
+
 function onVideoRawDataReceived(databuf, format, receivers) {
   let videoObj = {
     databuf: databuf,
@@ -523,7 +531,7 @@ function customizedresource() {
   }		
   const optCustomizedURLResouce = {
     CustomizedURLType: SDKCustomizedURLType.ZN_SDKCustomizedURL_SUPPORTURL,
-    strCustomizeURL: 'https://www.mi.com/'
+    strCustomizeURL: 'https://www.baidu.com/'
   }		
   const optCustomizedPictureResouce = {
     strPNGID: 'ZOOMAPPICON.PNG',
@@ -579,6 +587,7 @@ let functionObj = {
     const opts = {
       path: '', // win require absolute path, mac require ''
       domain: domain,
+      locale: ZoomAPPLocale.ZNSDK_APP_Locale_CN,
       enable_log: enable_log,
       langid: ZoomSDK_LANGUAGE_ID.LANGUAGE_English
     }
@@ -680,6 +689,11 @@ let functionObj = {
   getParticipantsList: function() {
     let ret = zoommeeting.GetParticipantsList();
     console.log('GetParticipantsList', ret);
+    return ret;
+  },
+  getUserInfoByUserID: function(userid) {
+    let ret = zoommeeting.GetUserInfoByUserID(userid);
+    console.log('GetUserInfoByUserID', ret);
     return ret;
   },
   getMeetingTopic: function() {
@@ -1423,6 +1437,38 @@ let functionObj = {
     global.startCBOption = startCBOption;
     showYUVWindow(startCBOption);
   },
+  setLibUVRawDataCB: function() {
+    let ret = zoomlibuvrawdata.SetLibUVRawDataCB(onLibUVRawDataReceived);
+    console.log('SetLibUVRawDataCB', ret);
+  }, 
+  startLibUVRawData: function(videoRawDataMemoryMode) {
+    let opts = {
+      RawDataMemoryMode: videoRawDataMemoryMode
+    }
+    let ret = zoomlibuvrawdata.Start(opts);
+    console.log('startVideoRawData', ret);
+  },
+  subscribeLibUV: function(nodeID, RawDataResolution, recever_handle) {
+    let opts = {
+      nodeID: nodeID,
+      RawDataResolution: RawDataResolution,
+      recever_handle: recever_handle
+    }
+    let ret = zoomlibuvrawdata.Subscribe(opts);
+    console.log('subscribeVideo', nodeID, RawDataResolution, recever_handle, ret);
+  },
+  unsubscribeLibUV: function(nodeID, recever_handle) {
+    let opts = {
+      nodeID: nodeID,
+      recever_handle: recever_handle
+    }
+    let ret = zoomlibuvrawdata.UnSubscribe(opts);
+    console.log('unsubscribeVideo', nodeID, recever_handle, ret);
+  },
+  stopLibUV: function() {
+    let ret = zoomlibuvrawdata.Stop();
+    console.log('stopVideo', ret);
+  },
   setVideoRawDataCB: function() {
     let ret = zoomvideorawdata.SetRawDataCB(onVideoRawDataReceived);
     console.log('SetVideoRawDataCB', ret);
@@ -1563,13 +1609,6 @@ let functionObj = {
     let ret = zoomconfiguration.MeetingConfig_ConfigDSCP(opts);
     console.log('ConfigDSCP', ret);
   },
-  disableRemoteCtrlCopyPasteFeature: function(bDisable) {
-    let opts = {
-      bDisable: bDisable
-    }
-    let ret = zoomconfiguration.MeetingConfig_DisableRemoteCtrlCopyPasteFeature(opts);
-    console.log('DisableRemoteCtrlCopyPasteFeature', ret);
-  },
   enableHideFullPhoneNumber4PureCallinUser: function(bHide) {
     let opts = {
       bHide: bHide
@@ -1612,6 +1651,13 @@ let functionObj = {
     let ret = zoomconfiguration.MeetingConfig_SetMaxDurationForOnlyHostInMeeting(opts);
     console.log('SetMaxDurationForOnlyHostInMeeting', ret);
   },
+  enableLocalRecordingConvertProgressBarDialog: function(bShow) {
+    let opts = {
+      bShow: bShow
+    }
+    let ret = zoomconfiguration.MeetingConfig_EnableLocalRecordingConvertProgressBarDialog(opts);
+    console.log('EnableLocalRecordingConvertProgressBarDialog', ret);
+  },
   disableAdvancedFeatures4GeneralSetting: function(bDisable) {
     let opts = {
       bDisable: bDisable
@@ -1626,7 +1672,7 @@ let functionObj = {
     let ret = zoomsetui.SettingUI_DisableAccountSettingTabPage(opts);
     console.log('DisableAccountSettingTabPage', ret);
   },
-  ConfSettingDialogShownTabPage: function(bShowAccessibility) {
+  confSettingDialogShownTabPage: function(bShowAccessibility) {
     let opts = {
       bShowAccessibility: bShowAccessibility,
       bShowAdvancedFeature: true,

@@ -198,6 +198,10 @@ ZMeetingConfigWrap& ZMeetingServiceWrap::GetMeetingConfigCtrl()
 {
 	return m_meeting_config_ctrl;
 }
+ZSDKSMSHelperWrap& ZMeetingServiceWrap::GetSDKSMSHelper()
+{
+	return m_sdk_sms_helper;
+}
 ZNConnectionQuality ZMeetingServiceWrap::GetSharingConnQuality()
 {
 	return Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().GetSharingConnQuality());
@@ -467,4 +471,70 @@ ZNSDKError ZMeetingUICtrlWrap::GetCurrentSplitScreenModeInfo(ZNSplitScreenInfo& 
 ZNSDKError ZMeetingUICtrlWrap::SwitchSplitScreenMode(bool bSplit)
 {
 	return Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().SwitchSplitScreenMode(bSplit));
+}
+
+ZNSDKError ZMeetingUICtrlWrap::BackToMeeting()
+{
+	ZNSDKError err = Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().BackToMeeting());
+	return err;
+}
+ZNSDKError ZMeetingUICtrlWrap::GetMeetingUIWnd(ZoomSTRING& hFirstView, ZoomSTRING& hSecondView)
+{
+	HWND sdk_hFirstView;
+	HWND sdk_hSecondView;
+	ZNSDKError err = Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().GetMeetingUIWnd(sdk_hFirstView, sdk_hSecondView));
+	wchar_t temp_1[1024];
+	wchar_t temp_2[1024];
+	int radix = 16;
+	_i64tow((long long)sdk_hFirstView, temp_1, radix);
+	_i64tow((long long)sdk_hSecondView, temp_2, radix);
+	hFirstView = temp_1;
+	hSecondView = temp_2;
+	return err;
+}
+ZNSDKError ZMeetingUICtrlWrap::SwitchMinimizeUIMode4FristScreenMeetingUIWnd(ZNSDKMinimizeUIMode mode)
+{
+	ZOOM_SDK_NAMESPACE::SDKMinimizeUIMode sdk_mode = Map2SDKDefine(mode);
+	ZOOM_SDK_NAMESPACE::SDKError sdk_err = ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().SwitchMinimizeUIMode4FristScreenMeetingUIWnd(sdk_mode);
+	ZNSDKError err = Map2WrapDefine(sdk_err);
+	//ZNSDKError err = Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().SwitchMinimizeUIMode4FristScreenMeetingUIWnd(sdk_mode));
+	return err;
+}
+bool ZMeetingUICtrlWrap::IsMinimizeModeOfFristScreenMeetingUIWnd(ZNSDKMinimizeUIMode &mode)
+{
+	ZOOM_SDK_NAMESPACE::SDKMinimizeUIMode sdk_mode = Map2SDKDefine(mode);
+	bool b_isMinimizMode = ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().IsMinimizeModeOfFristScreenMeetingUIWnd(sdk_mode);
+	switch (sdk_mode)
+	{
+	case ZOOMSDK::MinimizeUIMode_NONE:
+		mode = ZN_MinimizeUIMode_NONE;
+		break;
+	case ZOOMSDK::MinimizeUIMode_SHARE:
+		mode = ZN_MinimizeUIMode_SHARE;
+		break;
+	case ZOOMSDK::MinimizeUIMode_VIDEO:
+		mode = ZN_MinimizeUIMode_VIDEO;
+		break;
+	case ZOOMSDK::MinimizeUIMode_ACTIVESPEAKER:
+		mode = ZN_MinimizeUIMode_ACTIVESPEAKER;
+		break;
+	default:
+		break;
+	}
+	return b_isMinimizMode;
+}
+ZNSDKError ZMeetingUICtrlWrap::SwapToShowShareViewOrVideo(bool bToDisplayShare)
+{
+	ZNSDKError err = Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().SwapToShowShareViewOrVideo(bToDisplayShare));
+	return err;
+}
+ZNSDKError ZMeetingUICtrlWrap::IsDisplayingShareViewOrVideo(bool& bIsShare)
+{
+	ZNSDKError err = Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().IsDisplayingShareViewOrVideo(bIsShare));
+	return err;
+}
+ZNSDKError ZMeetingUICtrlWrap::CanSwapToShowShareViewOrVideo(bool& bCan)
+{
+	ZNSDKError err = Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetMeetingServiceWrap().T_GetUIController().CanSwapToShowShareViewOrVideo(bCan));
+	return err;
 }

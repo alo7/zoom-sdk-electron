@@ -13,11 +13,6 @@ ZSettingServiceWrap::~ZSettingServiceWrap()
 }
 void ZSettingServiceWrap::Init()
 {
-	ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetSettingServiceWrap().Init_Wrap();
-	m_setting_video_ctrl.Init();
-	m_setting_audio_ctrl.Init();
-	m_setting_general_ctrl.Init();
-	m_setting_recording_ctrl.Init();
 	
 }
 void ZSettingServiceWrap::Uninit()
@@ -39,6 +34,10 @@ ZSettingGeneralWrap& ZSettingServiceWrap::GetSettingGeneralCtrl()
 ZSettingRecordingWrap& ZSettingServiceWrap::GetSettingRecordingCtrl()
 {
 	return m_setting_recording_ctrl;
+}
+ZSettingUIStrategyWrap& ZSettingServiceWrap::GetSettingStrategyCtrl()
+{
+	return m_setting_ui_strategy_ctrl;
 }
 ZNSDKError ZSettingServiceWrap::ShowSettingDlg(ZNShowSettingDlgParam param)
 {

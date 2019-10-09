@@ -25,6 +25,7 @@ public:
 		REQUIRED_INFO_TYPE_Password4WrongPassword,///<If the password is invalid, the user needs to re-enter it. Via the InputMeetingPasswordAndScreenName() to specify the password information. 
 		REQUIRED_INFO_TYPE_PasswordAndScreenName,///<The user needs to enter the screen name and the password,via the InputMeetingPasswordAndScreenName() to specify the necessary information.
 		REQUIRED_INFO_TYPE_ScreenName,///<The user needs to enter the screen name. Via the InputMeetingPasswordAndScreenName() to specify the screen name information.
+		REQUIRED_INFO_TYPE_MeetingIDAndScreenName,///<The user needs to enter the screen name and the meeting id,via the InputMeetingMeetingIDAndScreenName() to specify the necessary information.
 	};
 
 	/// \brief Get the type of required information to be completed.
@@ -34,6 +35,10 @@ public:
 	/// \brief Complete the password and screen name information.
 	/// \remarks The SDK will destroy the object instance after calling this function. Supplement with the correct information.
 	virtual bool InputMeetingPasswordAndScreenName(const wchar_t* meetingPassword, const wchar_t* screenName) = 0;
+
+	/// \brief Complete the meeting id and screen name information.
+	/// \remarks The SDK will destroy the object instance after calling this function. Supplement with the correct information.
+	virtual bool InputMeetingIDAndScreenName(const wchar_t* meetingID, const wchar_t* screenName) = 0;
 
 	/// \brief Complete the screen name.
 	/// \remarks The SDK will destroy this object instance after calling this function. Complete the information by the correct function.
@@ -444,6 +449,18 @@ public:
 	// \brief Set the visibility of Switch Camera button on 2nd camera share window,Default: TRUE. 
 	/// \param bHide TRUE indicates to hide the Switch Camera button. FALSE not.
 	virtual void HideSwitchCameraButton(bool bHide) = 0;
+
+	// \brief Set the visibility of CopyURL button on invite window, Default: TRUE. 
+	/// \param bHide TRUE indicates to hide, FALSE not.
+	virtual void HideCopyUrlOnInviteWindow(bool bHide) = 0;
+
+	// \brief Set the visibility of CopyInvitation button on invite window, Default: TRUE. 
+	/// \param bHide TRUE indicates to hide, FALSE not.
+	virtual void HideCopyInvitationOnInviteWindow(bool bHide) = 0;
+
+	// \brief Set the visibility of Keypad button on meeting window, Default: TRUE. 
+	/// \param bHide TRUE indicates to hide, FALSE not.
+	virtual void HideKeypadButtonOnMeetingWindow(bool bHide) = 0;
 };
 
 /// \brief Meeting connect configuration Interface

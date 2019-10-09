@@ -97,6 +97,12 @@ typedef struct _ZNConfigurableOptions
 	}
 
 }ZNConfigurableOptions;
+
+enum ZNSDK_APP_Locale
+{
+	ZNSDK_APP_Locale_Default,
+	ZNSDK_APP_Locale_CN,
+};
 typedef struct _ZNInitParam
 {
 	ZoomSTRING path;///<The path of sdk.dll
@@ -106,9 +112,11 @@ typedef struct _ZNInitParam
 	ZoomSTRING strSupportUrl;///<Support URL.
 	ZoomSTRING strBrandingName;///<Branding name.
 	ZNConfigurableOptions obConfigOpts;///<The configuration options of the SDK.
+	ZNSDK_APP_Locale locale;
 	_ZNInitParam(){
 		enable_log = true;
 		langid = ZNLANGUAGE_English;
+		locale = ZNSDK_APP_Locale_Default;
 	}
 }ZNInitParam;
 
@@ -559,6 +567,61 @@ typedef struct _ZNUserInfomation
 #endif
 }ZNUserInfomation;
 
+/*! \enum SDKMinimizeUIMode
+\brief The type of minimize user interface mode.
+Here are more detailed structural descriptions.
+*/
+enum ZNSDKMinimizeUIMode
+{
+	ZN_MinimizeUIMode_NONE,///<For initialization.
+	ZN_MinimizeUIMode_SHARE,///<Minimized mode for sharing.
+	ZN_MinimizeUIMode_VIDEO,///<Minimized mode for video.
+	ZN_MinimizeUIMode_ACTIVESPEAKER,///<Minimized mode for speaking.
+};
+typedef struct _ZNSettingDlgShowTabPageOption
+{
+	bool z_bShowGeneral;///<True indicates to show general page
+	bool z_bShowVideo; ///<True indicates to show video page
+	bool z_bShowAudio;///<True indicates to show audio page
+	bool z_bShowVirtualBackGround;///<True indicates to show virtual background page
+	bool z_bSHowRecording;///<True indicates to show recording page
+	bool z_bShowAdvancedFeature;///<True indicates to show advance feature page
+	bool z_bShowStatistics;///<True indicates to show staticstics page
+	bool z_bShowFeedback;///<True indicates to show feed back page
+	bool z_bShowAccessibility;///<True indicates to show accessibility page
+	_ZNSettingDlgShowTabPageOption()
+	{
+		z_bShowGeneral = true;
+		z_bShowVideo = true;
+		z_bShowAudio = true;
+		z_bShowVirtualBackGround = true;
+		z_bSHowRecording = true;
+		z_bShowStatistics = true;
+		z_bShowAccessibility = true;
+		z_bShowAdvancedFeature = false;
+		z_bShowFeedback = false;
+	}
+
+}ZNSettingDlgShowTabPageOption;
+
+enum ZNSMSVerificationCodeErr
+{
+	ZNSMSVerificationCodeErr_Unknown,
+	ZNSMSVerificationCodeErr_Success,
+	ZNSMSVerificationCodeErr_Retrieve_SendSMSFailed,
+	ZNSMSVerificationCodeErr_Retrieve_InvalidPhoneNum,
+	ZNSMSVerificationCodeErr_Retrieve_PhoneNumAlreadyBound,
+	ZNSMSVerificationCodeErr_Retrieve_PhoneNumSendTooFrequent,
+	ZNSMSVerificationCodeErr_Verify_CodeIncorrect,
+	ZNSMSVerificationCodeErr_Verify_CodeExpired,
+	ZNSMSVerificationCodeErr_Verify_UnknownError,
+};
+typedef struct _ZNZoomRealNameAuthCountryInfo
+{
+	std::string countryID;
+	std::string countryName;
+	std::string countryCode;
+}ZNZoomRealNameAuthCountryInfo;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

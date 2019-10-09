@@ -92,6 +92,12 @@
     BOOL                _hideSwitchCameraButton;
     //Disable opening recording file when meeting end.
     BOOL                _disableOpenRecordFileWhenMeetingEnd;
+    //Hide 'show keypad' button on meeting window.
+    BOOL                _hideShowKeypadButton;
+    //Hide copy URL button when invite others join meeting
+    BOOL                _hideCopyURLButtonWhenInviteOthers;
+    //Hide copy Invitation button when invite others join meeting
+    BOOL                _hideCopyInvitationButtonWhenInviteOthers;
 }
 @property(nonatomic, assign)CGDirectDisplayID displayAppID;
 @property(nonatomic, assign)CGDirectDisplayID monitorID;
@@ -133,6 +139,9 @@
 @property(nonatomic, assign)BOOL hideMeetingStaticSystemBusyWaring;
 @property(nonatomic, assign)BOOL hideSwitchCameraButton;
 @property(nonatomic, assign)BOOL disableOpenRecordFileWhenMeetingEnd;
+@property(nonatomic, assign)BOOL hideShowKeypadButton;
+@property(nonatomic, assign)BOOL hideCopyURLButtonWhenInviteOthers;
+@property(nonatomic, assign)BOOL hideCopyInvitationButtonWhenInviteOthers;
 
 - (ZoomSDKError)prefillWebinarUserName:(NSString*)userName Email:(NSString*)email;
 - (ZoomSDKError)hideSDKButtons:(BOOL)hide ButtonType:(SDKButton)button;

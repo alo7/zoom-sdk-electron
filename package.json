@@ -1,0 +1,24 @@
+{
+  "name": "zoom-sdk-electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alo7/zoom-sdk-electron.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/alo7/zoom-sdk-electron/issues"
+  },
+  "homepage": "https://github.com/alo7/zoom-sdk-electron#readme"
+}

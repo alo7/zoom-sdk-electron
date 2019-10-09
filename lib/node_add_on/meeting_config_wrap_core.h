@@ -27,6 +27,19 @@ public:
 	void SetFloatVideoWndVisibility(bool bShow);
 	void PrePopulateWebinarRegistrationInfo(ZoomSTRING email, ZoomSTRING userName);
 
+	void Reset();
+	void EnableAutoAdjustSpeakerVolumeWhenJoinAudio(bool bEnable);
+	void EnableAutoAdjustMicVolumeWhenJoinAudio(bool bEnable);
+	void ConfigDSCP(int dscpAudio, int dscpVideo, bool bReset);
+	
+	void EnableHideFullPhoneNumber4PureCallinUser(bool bHide);
+	void EnableLengthLimitationOfMeetingNumber(bool bEnable);
+	void EnableShareIOSDevice(bool bEnable);
+	void EnableShareWhiteBoard(bool bEnable);
+	void ForceDisableMultiShare(bool bDisable);
+	void SetMaxDurationForOnlyHostInMeeting(int nDuration);
+	void EnableLocalRecordingConvertProgressBarDialog(bool bShow);
+
 	ZNFreeMeetingEndingReminderType GetReminderType();
 	ZNSDKError UpgradeMeeting();
 	ZNSDKError UpgradeAccount();

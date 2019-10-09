@@ -55,33 +55,21 @@ private:
 class ZDirectShareHelperWrapEvent : public ZOOM_SDK_NAMESPACE::IDirectShareServiceHelperEvent
 {
 public:
-	void SetOwner(ZDirectShareHelperWrap* obj) { owner_ = obj; counter = 0;}
+	void SetOwner(ZDirectShareHelperWrap* obj) { owner_ = obj;}
 	virtual void OnDirectShareStatusUpdate(ZOOM_SDK_NAMESPACE::DirectShareStatus status, ZOOM_SDK_NAMESPACE::IDirectShareViaMeetingIDOrPairingCodeHandler* handler)
 	{
 		
 		if (owner_) {
 			
-			if (status == ZOOM_SDK_NAMESPACE::DirectShare_Need_MeetingID_Or_PairingCode)
+			if ((status == ZOOM_SDK_NAMESPACE::DirectShare_Need_MeetingID_Or_PairingCode) || (status == ZOOM_SDK_NAMESPACE::DirectShare_WrongMeetingID_Or_SharingKey) )
 			{
-				counter++;
 				ZDirectShareViaMeetingIDOrPairingCodeHandler::GetInst().SetHandler(handler);
-				if (counter > 1)
-				{
-					ZNDirectShareStatus temp_status = ZN_DirectShare_WrongMeetingID_Or_SharingKey;
-					owner_->OnDirectShareStatusUpdate(temp_status);
-					return;
-				}
 			}
 			owner_->OnDirectShareStatusUpdate(Map2WrapDefine(status));
 		}
 	}
-	void ResetCounter()
-	{
-		counter = 0;
-	}
 private:
 	ZDirectShareHelperWrap* owner_;
-	int counter;
 };
 
 static ZDirectShareHelperWrapEvent g_direct_share_helper_event;
@@ -125,7 +113,6 @@ bool ZDirectShareHelperWrap::IsDirectShareInProgress()
 }
 ZNSDKError ZDirectShareHelperWrap::StartDirectShare()
 {
-	g_direct_share_helper_event.ResetCounter();
 	return Map2WrapDefine(ZOOM_SDK_NAMESPACE::CSDKWrap::GetInst().GetAuthServiceWrap().T_GetDirectShareServiceHeler().StartDirectShare());
 }
 ZNSDKError ZDirectShareHelperWrap::StopDirectShare()
