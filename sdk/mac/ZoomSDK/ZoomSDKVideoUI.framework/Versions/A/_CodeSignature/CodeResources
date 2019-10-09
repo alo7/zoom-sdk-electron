@@ -14,7 +14,7 @@
 		</data>
 		<key>Resources/Info.plist</key>
 		<data>
-		WlS7jaeqLn6MGeIlkf/Bi9/SQpI=
+		fQlU5HldyjFXav/kTnWWTTk9ptA=
 		</data>
 		<key>Resources/LaunchPollWindow.nib</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Resources/PollProgressWindow.nib</key>
 		<data>
-		4wEG3dl5rThR5dfmxWnwJtzT984=
+		+n4ToGsOpgM9digAhzPglxQAmGE=
 		</data>
 		<key>Resources/RemoteControlUserListForLion.nib</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Resources/ZMJBHWindowController.nib</key>
 		<data>
-		+itEnxZuDdZaLciDJ6Q17Eq8RcU=
+		bNtWpp7bfXAgKC6ejywJrBEiy+U=
 		</data>
 		<key>Resources/ZMJoinMeetingWindowController.nib</key>
 		<data>
@@ -114,7 +114,7 @@
 		</data>
 		<key>Resources/ZMRemoteControlUserListWindowController.nib</key>
 		<data>
-		v7I3ETUxdlWM0o1ehx5mcP1Kyco=
+		4VAD/ssl2h/CnM2ecCx5XiKc+N8=
 		</data>
 		<key>Resources/ZMRenameWindowController.nib</key>
 		<data>
@@ -196,11 +196,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WlS7jaeqLn6MGeIlkf/Bi9/SQpI=
+			fQlU5HldyjFXav/kTnWWTTk9ptA=
 			</data>
 			<key>hash2</key>
 			<data>
-			ulhHITqaU9Y7QhffGSslLUE89jJObhjDO5JzA0oz0b0=
+			Ebti11nxquPw4BmQwW03gvV00e+IGa/6SV1hHyPr+TI=
 			</data>
 		</dict>
 		<key>Resources/LaunchPollWindow.nib</key>
@@ -229,11 +229,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			4wEG3dl5rThR5dfmxWnwJtzT984=
+			+n4ToGsOpgM9digAhzPglxQAmGE=
 			</data>
 			<key>hash2</key>
 			<data>
-			loxoj+fCciDjkEf2AXdAup6LlroD7qyFVDysz3hxtYo=
+			sF02lCLjqNC5vo3VPPzQz16TUNOjdvoB3VoDLrcVOYA=
 			</data>
 		</dict>
 		<key>Resources/RemoteControlUserListForLion.nib</key>
@@ -383,11 +383,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+itEnxZuDdZaLciDJ6Q17Eq8RcU=
+			bNtWpp7bfXAgKC6ejywJrBEiy+U=
 			</data>
 			<key>hash2</key>
 			<data>
-			P4JKdnLaPkeO/2j/JgS7rh5brV0oXnuwegkZZHZCOpk=
+			hH9QwJhxf9UaUQAomoa5Kd3Ek1cJapqhFZNpvs76DE0=
 			</data>
 		</dict>
 		<key>Resources/ZMJoinMeetingWindowController.nib</key>
@@ -471,11 +471,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			v7I3ETUxdlWM0o1ehx5mcP1Kyco=
+			4VAD/ssl2h/CnM2ecCx5XiKc+N8=
 			</data>
 			<key>hash2</key>
 			<data>
-			bV3G7hhUUZ1L3zl5jbZDq1BExUSxyApm1RB/Bm1PlPQ=
+			Eizf5aKyBfWg9ZR7QDQxFk3QnEEc8KKRnwdInrH+X5M=
 			</data>
 		</dict>
 		<key>Resources/ZMRenameWindowController.nib</key>

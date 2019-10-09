@@ -1,5 +1,2 @@
-v4.4.55130.0712
-
-Base SDK versions:
-Win32 native SDK version: zoom-sdk.4.4.55130.0712
-Mac native SDK version: All_mac_sdk_4.4.55130.0712
+win32 native sdk version:zoom-sdk.4.4.56086.0911
+mac native sdk version:All_mac_sdk_4.4.56087.0911
